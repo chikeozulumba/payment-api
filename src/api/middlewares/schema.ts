@@ -7,3 +7,15 @@ export const addProduct = {
   price: Joi.number().required(),
   discount: Joi.number().optional(),
 }
+
+export const updateProduct = {
+  title: Joi.string().optional(),
+  quantity: Joi.number().optional().min(1),
+  description: Joi.string().optional(),
+  price: Joi.number().optional(),
+  discount: Joi.number().optional(),
+}
+
+export const findProduct = {
+  id: Joi.string().optional(),
+}

@@ -1,3 +1,4 @@
+import ShortID from 'shortid'
 import { Document, Schema, model, Types } from "mongoose";
 
 export interface IProduct extends Document {
@@ -11,8 +12,12 @@ export interface IProduct extends Document {
 const productSchema: Schema = new Schema({
   title: {
     type: String,
-    required: true,
+    required: false,
     unique: true,
+  },
+  sku: {
+    type: String,
+    required: false
   },
   description: {
     type: String,
@@ -20,16 +25,15 @@ const productSchema: Schema = new Schema({
   },
   quantity: {
     type: Number,
-    required: true,
     default: 0,
   },
   price: {
     type: Number,
-    required: true,
+    default: 0.0,
   },
   discount: {
     type: Number,
-    default: 0,
+    default: 0.0,
   },
   currency: {
     type: String,
@@ -44,5 +48,11 @@ const productSchema: Schema = new Schema({
     default: Date.now(),
   },
 })
+
+productSchema.pre('save', function (next) {
+  const doc: any = this
+  doc.sku = ShortID.generate()
+  next()
+});
 
 export default model<IProduct>('Product', productSchema);

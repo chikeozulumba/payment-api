@@ -15,7 +15,23 @@ export default class CrudService {
     this.connection = await DB()
   }
 
-  public async create(data: IProduct, conditions = {}) {
+  public async create(data: IProduct) {
     return await this.model.create(data)
+  }
+
+  public async findById(id: string, conditions = {}) {
+    return await this.model.findById(id, conditions)
+  }
+
+  public async find(conditions = {}) {
+    return await this.model.find(conditions)
+  }
+
+  public async update(params: any, payload: any, conditions: any = {}) {
+    return await this.model.updateOne(params, payload, conditions)
+  }
+
+  public async delete(id: string) {
+    return await this.model.deleteOne({ _id: id })
   }
 }

@@ -17,6 +17,7 @@
     "http-status-codes": "^1.3.2",
     "mongodb": "^3.3.2",
     "mongoose": "^5.7.1",
+    "shortid": "^2.2.15",
     "winston": "^3.2.1"
   },
   "devDependencies": {
@@ -28,6 +29,7 @@
     "@types/mongoose": "^5.5.17",
     "@types/morgan": "^1.7.37",
     "@types/node": "^12.7.5",
+    "@types/shortid": "^0.0.29",
     "@typescript-eslint/eslint-plugin": "^2.3.0",
     "@typescript-eslint/parser": "^2.3.0",
     "eslint": "^6.4.0",
