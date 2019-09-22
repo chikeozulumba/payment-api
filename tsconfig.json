@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "target": "es5",
+    "moduleResolution": "node",
+    "strict": true,
+    "strictNullChecks": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "sourceMap": false,
+    "outDir": "dist",
+    "allowJs": true
+  },
+  "include": ["src/**/*", "environment.d.ts"],
+  "lib": ["es2015"],
+  "exclude": ["node_modules", "dist"]
+}
