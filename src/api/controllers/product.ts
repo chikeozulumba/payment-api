@@ -1,6 +1,6 @@
 import { Request, Response } from 'express'
 import Service from '../../services/ProductService'
-import { CREATED, NOT_FOUND, NO_CONTENT, OK, BAD_REQUEST, ACCEPTED } from 'http-status-codes';
+import { CREATED, NOT_FOUND, NO_CONTENT, OK, BAD_REQUEST } from 'http-status-codes';
 
 class ProductContoller {
   public async createProduct(req: Request, res: Response) {

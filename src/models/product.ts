@@ -55,4 +55,4 @@ productSchema.pre('save', function (next) {
   next()
 });
 
-export default model<IProduct>('Product', productSchema);
+export default model<IProduct>('Product', productSchema, 'products');

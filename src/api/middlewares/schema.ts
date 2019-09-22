@@ -8,6 +8,13 @@ export const addProduct = {
   discount: Joi.number().optional(),
 }
 
+export const addPurchase = {
+  items: Joi.array().items(Joi.object().keys({
+    productId: Joi.string().required(),
+    quantity: Joi.number().required().min(1),
+  })),
+}
+
 export const updateProduct = {
   title: Joi.string().optional(),
   quantity: Joi.number().optional().min(1),
@@ -17,5 +24,9 @@ export const updateProduct = {
 }
 
 export const findProduct = {
+  id: Joi.string().optional(),
+}
+
+export const findPurchase = {
   id: Joi.string().optional(),
 }

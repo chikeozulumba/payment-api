@@ -1,19 +1,26 @@
+import ShortID from 'shortid'
 import { Document, Schema, model, Types } from "mongoose";
 
 export interface IPurchase extends Document {
-  title: string
-  description: string
-  quantity: number
-  price: string
-  discount: string
+  items: any
 }
 
 const purchaseSchema: Schema = new Schema({
-  title: {
+  referenceID: {
     type: String,
-    required: false,
-    unique: false,
   },
+  items: [
+    {
+      type: Types.ObjectId,
+      ref: 'Product',
+    },
+  ],
+  quantity: [
+    {
+      type: Number,
+      default: 0,
+    },
+  ],
   createdAt: {
     type: Date,
     default: Date.now(),
@@ -24,4 +31,11 @@ const purchaseSchema: Schema = new Schema({
   },
 })
 
-export default model<IPurchase>('Purchase', purchaseSchema);
+
+purchaseSchema.pre('save', function (next) {
+  const doc: any = this
+  doc.referenceID = ShortID.generate()
+  next()
+});
+
+export default model<IPurchase>('Purchase', purchaseSchema, 'purchases');

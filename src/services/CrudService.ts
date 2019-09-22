@@ -19,12 +19,19 @@ export default class CrudService {
     return await this.model.create(data)
   }
 
-  public async findById(id: string, conditions = {}) {
-    return await this.model.findById(id, conditions)
+  public async findById(id: string, conditions: any = {}) {
+    return await this.model.findById(id).populate(conditions.ref)
   }
 
-  public async find(conditions = {}) {
-    return await this.model.find(conditions)
+  public async aggregate(conditions: any = {}) {
+    return await this.model.aggregate([
+      ...conditions,
+    ])
+  }
+
+  public async find(type: string = 'normal', conditions: any = {}) {
+    if (type === 'agg') return await this.aggregate(conditions.aggregate || {})
+    return await this.model.find().sort({ updatedAt: -1 }).populate(conditions.ref)
   }
 
   public async update(params: any, payload: any, conditions: any = {}) {

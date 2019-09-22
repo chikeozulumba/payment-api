@@ -10,7 +10,7 @@ export interface IReciept extends Document {
 }
 
 const receiptSchema: Schema = new Schema({
-  referenceKey: {
+  referenceID: {
     type: String,
     default: ShortID.generate()
   },
