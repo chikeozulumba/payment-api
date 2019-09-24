@@ -1,5 +1,5 @@
 import ShortID from 'shortid'
-import { Document, Schema, model, Types } from "mongoose";
+import { Document, Schema, model, Types } from "mongoose"
 
 export interface IReciept extends Document {
   title: string
@@ -17,7 +17,7 @@ const receiptSchema: Schema = new Schema({
   status: {
     type: String,
     enum: ['unpaid', 'paid'],
-    default: 'paid',
+    required: true
   },
   dateCleared: {
     type: Date,
@@ -33,4 +33,10 @@ const receiptSchema: Schema = new Schema({
   },
 })
 
-export default model<IReciept>('Reciept', receiptSchema);
+receiptSchema.pre('save', function (next) {
+  const doc: any = this
+  doc.referenceID = ShortID.generate()
+  next()
+});
+
+export default model<IReciept>('Reciept', receiptSchema, 'reciepts');

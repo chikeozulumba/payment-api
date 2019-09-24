@@ -1,5 +1,5 @@
 import ShortID from 'shortid'
-import { Document, Schema, model, Types } from "mongoose";
+import { Document, Schema, model, Types } from "mongoose"
 
 export interface IPurchase extends Document {
   items: any
@@ -21,6 +21,11 @@ const purchaseSchema: Schema = new Schema({
       default: 0,
     },
   ],
+  reciept: {
+    type: Types.ObjectId,
+    ref: 'Reciept',
+    unique: true
+  },
   createdAt: {
     type: Date,
     default: Date.now(),
@@ -31,11 +36,10 @@ const purchaseSchema: Schema = new Schema({
   },
 })
 
-
 purchaseSchema.pre('save', function (next) {
   const doc: any = this
   doc.referenceID = ShortID.generate()
   next()
-});
+})
 
-export default model<IPurchase>('Purchase', purchaseSchema, 'purchases');
+export default model<IPurchase>('Purchase', purchaseSchema, 'purchases')

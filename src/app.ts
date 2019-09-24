@@ -5,7 +5,7 @@ import morgan from 'morgan'
 import { NOT_FOUND } from 'http-status-codes'
 import { ENV, DB } from './config'
 import Log from './bootstrap/log'
-import API from './api'
+import API from './api/routes'
 
 const initializeApp = async () => {
   

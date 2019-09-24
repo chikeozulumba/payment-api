@@ -1,6 +1,6 @@
 import { Router } from 'express'
-import products from './routes/products'
-import purchases from './routes/purchases'
+import products from './products'
+import purchases from './purchases'
 
 // guaranteed to get dependencies
 export default (app: Router) => {
